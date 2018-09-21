@@ -1,0 +1,7 @@
+version: 0.0
+os: linux
+hooks:
+  AfterInstall:
+    - location: scripts/pull_script.sh
+      timeout: 300
+      runas: root
