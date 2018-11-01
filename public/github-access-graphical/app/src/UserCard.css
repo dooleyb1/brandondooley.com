@@ -1,0 +1,31 @@
+.User-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.User-icon {
+  height: 20vh;
+  top: 220px;
+  position: fixed;
+}
+
+.User-details {
+  height: 80vh;
+  width: 80vh;
+  position: fixed;
+  color: white;
+  top: 400px;
+}
+
+.User-blog {
+  color: #61dafb;
+}
+
+.Button {
+  width: 300px;
+  position: absolute;
+  top: 550px;
+  margin: auto;
+}
