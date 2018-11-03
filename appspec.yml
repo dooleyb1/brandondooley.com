@@ -1,0 +1,13 @@
+version: 0.0
+
+os: linux
+
+hooks:
+
+ BeforeInstall:
+
+AfterInstall:
+
+   - location: scripts/deploy-script.sh
+
+     runas: root
