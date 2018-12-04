@@ -4,4 +4,4 @@
 
 Source code for personal website.
 
-[Live Version](https://brandondooley.com/github-social-graph)
+[Live Version](https://brandondooley.com/)
