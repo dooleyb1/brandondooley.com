@@ -11,7 +11,7 @@
         "simple-line-icons": "^2.4.1"
     },
     "scripts": {
-        "push": "git add -A . && git commit -m \"Updating site...\"",
+        "push": "git add -A . && git commit -m \"Updating site...\" && git push",
         "update": "git pull && sudo cp -r -v ./* /var/www/brandondooley.com/ && sudo service nginx restart",
         "deploy": "sudo cp -r -v ./* /var/www/brandondooley.com/ && sudo service nginx restart"
     },
