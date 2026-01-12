@@ -7,21 +7,43 @@
     "dependencies": {
         "bootstrap": "4.0.0",
         "devicons": "^1.8.0",
+        "font-awesome": "^4.7.0",
         "jquery": "3.3.1",
+        "jquery.easing": "^1.4.1",
         "simple-line-icons": "^2.4.1"
     },
     "scripts": {
+        "clean": "rimraf css/*.css js/*.min.js",
+        "clean:vendor": "rimraf vendor",
+        "scss:compile": "sass scss/resume.scss:css/resume.css --style=expanded --no-source-map",
+        "scss:minify": "sass scss/resume.scss:css/resume.min.css --style=compressed --no-source-map",
+        "css": "npm-run-all scss:compile scss:minify",
+        "js:minify": "terser js/resume.js -o js/resume.min.js --compress --mangle",
+        "js": "npm run js:minify",
+        "vendor:bootstrap": "copyfiles -u 3 'node_modules/bootstrap/dist/**/*' vendor/bootstrap",
+        "vendor:devicons": "copyfiles -u 2 'node_modules/devicons/{css,fonts}/**/*' vendor/devicons",
+        "vendor:font-awesome": "copyfiles -u 2 'node_modules/font-awesome/{css,fonts}/**/*' vendor/font-awesome",
+        "vendor:jquery": "copyfiles -u 3 'node_modules/jquery/dist/*' vendor/jquery",
+        "vendor:jquery-easing": "copyfiles -u 2 'node_modules/jquery.easing/*.js' vendor/jquery-easing",
+        "vendor:simple-line-icons": "copyfiles -u 2 'node_modules/simple-line-icons/{css,fonts}/**/*' vendor/simple-line-icons",
+        "vendor": "npm run clean:vendor && npm-run-all --parallel vendor:*",
+        "build": "npm-run-all clean css js vendor",
+        "serve": "http-server . -p 8080 -o",
+        "watch:scss": "chokidar 'scss/**/*.scss' -c 'npm run css'",
+        "watch:js": "chokidar 'js/resume.js' -c 'npm run js'",
+        "watch": "npm-run-all --parallel watch:*",
+        "dev": "npm run build && npm-run-all --parallel serve watch",
         "push": "git add -A . && git commit -m \"Updating site...\" && git push",
         "update": "git pull && sudo cp -r -v ./* /var/www/brandondooley.com/ && sudo service nginx restart",
         "deploy": "sudo cp -r -v ./* /var/www/brandondooley.com/ && sudo service nginx restart"
     },
     "devDependencies": {
-        "browser-sync": "2.23.6",
-        "gulp": "^3.9.1",
-        "gulp-clean-css": "3.9.2",
-        "gulp-header": "2.0.1",
-        "gulp-rename": "^1.2.2",
-        "gulp-sass": "^3.1.0",
-        "gulp-uglify": "3.0.0"
+        "chokidar-cli": "^3.0.0",
+        "copyfiles": "^2.4.1",
+        "http-server": "^14.1.1",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^5.0.5",
+        "sass": "^1.70.0",
+        "terser": "^5.27.0"
     }
 }
